@@ -30,6 +30,8 @@ package java.lang;
  * Every class has {@code Object} as a superclass. All objects,
  * including arrays, implement the methods of this class.
  *
+ * 类层次结构的根，每个类都是这个类的子类。所以的类（包括数组）实现了该类的方法
+ *
  * @author  unascribed
  * @see     java.lang.Class
  * @since   JDK1.0

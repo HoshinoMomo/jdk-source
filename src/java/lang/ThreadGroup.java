@@ -34,14 +34,22 @@ import sun.misc.VM;
  * group can also include other thread groups. The thread groups form
  * a tree in which every thread group except the initial thread group
  * has a parent.
+ *
+ * 一个线程组代表一组线程，此外，一个线程组可以包含另一个线程组。
+ * 线程组形成一个树，除了最初的线程组，其他线程组都有父线程组
  * <p>
  * A thread is allowed to access information about its own thread
  * group, but not to access information about its thread group's
  * parent thread group or any other thread groups.
  *
+ * 一个线程只能被允许去接受它自己线程组的信息，
+ * 不能拿到它的线程组的父线程组的信息或者其他线程组的信息
+ *
  * @author  unascribed
  * @since   JDK1.0
  */
+
+//TODO wait to be translated
 /* The locking strategy for this code is to try to lock only one level of the
  * tree wherever possible, but otherwise to lock from the bottom up.
  * That is, from child thread groups to parents.
@@ -53,8 +61,7 @@ import sun.misc.VM;
  * and working off of that snapshot, rather than holding the thread group locked
  * while we work on the children.
  */
-public
-class ThreadGroup implements Thread.UncaughtExceptionHandler {
+public class ThreadGroup implements Thread.UncaughtExceptionHandler {
     private final ThreadGroup parent;
     String name;
     int maxPriority;
@@ -71,7 +78,9 @@ class ThreadGroup implements Thread.UncaughtExceptionHandler {
 
     /**
      * Creates an empty Thread group that is not in any Thread group.
+     * 创建不在任何线程组中的空线程组。
      * This method is used to create the system Thread group.
+     * 此方法用于创建系统线程组。
      */
     private ThreadGroup() {     // called from C code
         this.name = "system";
@@ -82,6 +91,7 @@ class ThreadGroup implements Thread.UncaughtExceptionHandler {
     /**
      * Constructs a new thread group. The parent of this new group is
      * the thread group of the currently running thread.
+     * 构造一个新线程组。这个新组的父线程组是当前运行线程的线程组
      * <p>
      * The <code>checkAccess</code> method of the parent thread group is
      * called with no arguments; this may result in a security exception.

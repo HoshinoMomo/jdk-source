@@ -31,10 +31,16 @@ package java.lang;
  * in an object.  An object of type {@code Byte} contains a single
  * field whose type is {@code byte}.
  *
+ * {@code Byte}类将原始类型{@code Byte} 的值包装在对象中。
+ * 类型为{@code Byte}的对象包含一个字段，其类型为{@code Byte}。
+ *
  * <p>In addition, this class provides several methods for converting
  * a {@code byte} to a {@code String} and a {@code String} to a {@code
  * byte}, as well as other constants and methods useful when dealing
  * with a {@code byte}.
+ *
+ * 此外，这个类还提供了几个方法，用于将a {@code byte}转换为{@code String}，
+ * 将{@code String}转换为{@code *byte}，以及处理 a {@code byte}时有用的其他常量和方法。
  *
  * @author  Nakul Saraiya
  * @author  Joseph D. Darcy

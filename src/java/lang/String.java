@@ -110,6 +110,8 @@ import java.util.regex.PatternSyntaxException;
 
 public final class String
     implements java.io.Serializable, Comparable<String>, CharSequence {
+
+    /** 实际上数字符数组储存*/
     /** The value is used for character storage. */
     private final char value[];
 
@@ -173,6 +175,8 @@ public final class String
      * argument specifies the length of the subarray. The contents of the
      * subarray are copied; subsequent modification of the character array does
      * not affect the newly created string.
+     *
+     * 复制char[] value 的 offset  ---  offset+count
      *
      * @param  value
      *         Array that is the source of characters
