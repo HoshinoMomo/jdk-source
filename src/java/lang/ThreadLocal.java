@@ -37,6 +37,11 @@ import java.util.function.Supplier;
  * static fields in classes that wish to associate state with a thread (e.g.,
  * a user ID or Transaction ID).
  *
+ * 这个类提供线程局部变量。这些变量不同于*它们的普通副本，因为每个访问一个变量
+ * 的线程(通过其* {@code get}或{@code set}方法)都有自己的、独立初始化的变量
+ * 副本。{@code ThreadLocal}实例通常是希望将状态与线程关联的类中的私有*静
+ * 态字段(例如，*用户ID或事务ID)。
+ *
  * <p>For example, the class below generates unique identifiers local to each
  * thread.
  * A thread's id is assigned the first time it invokes {@code ThreadId.get()}
@@ -88,8 +93,7 @@ public class ThreadLocal<T> {
      * The next hash code to be given out. Updated atomically. Starts at
      * zero.
      */
-    private static AtomicInteger nextHashCode =
-        new AtomicInteger();
+    private static AtomicInteger nextHashCode = new AtomicInteger();
 
     /**
      * The difference between successively generated hash codes - turns

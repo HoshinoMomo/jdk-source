@@ -308,7 +308,7 @@ public class StampedLock implements java.io.Serializable {
     private static final int RMODE = 0;
     private static final int WMODE = 1;
 
-    /** Wait nodes */
+    /** 等待队列 Wait nodes */
     static final class WNode {
         volatile WNode prev;
         volatile WNode next;
