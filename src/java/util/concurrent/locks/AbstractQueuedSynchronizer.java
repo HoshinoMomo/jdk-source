@@ -383,20 +383,32 @@ public abstract class AbstractQueuedSynchronizer
         /** Marker to indicate a node is waiting in exclusive mode */
         static final Node EXCLUSIVE = null;
 
-        /** waitStatus value to indicate thread has cancelled */
+        /**
+         * waitStatus value to indicate thread has cancelled
+         * 表示当前的线程被取消
+         */
         static final int CANCELLED =  1;
-        /** waitStatus value to indicate successor's thread needs unparking */
+        /**
+         * waitStatus value to indicate successor's thread needs unparking
+         * 表示当前节点的后继节点包含的线程需要运行，也就是unpark
+         */
         static final int SIGNAL    = -1;
-        /** waitStatus value to indicate thread is waiting on condition */
+        /**
+         * waitStatus value to indicate thread is waiting on condition
+         * 表示当前节点在等待condition，也就是在condition队列中
+         */
         static final int CONDITION = -2;
         /**
          * waitStatus value to indicate the next acquireShared should
          * unconditionally propagate
+         * 表示当前场景下后续的acquireShared能够得以执行
          */
         static final int PROPAGATE = -3;
 
         /**
          * Status field, taking on only the values:
+         * 状态字段，仅接受以下值
+         *
          *   SIGNAL:     The successor of this node is (or will soon be)
          *               blocked (via park), so the current node must
          *               unpark its successor when it releases or
@@ -428,6 +440,8 @@ public abstract class AbstractQueuedSynchronizer
          * The field is initialized to 0 for normal sync nodes, and
          * CONDITION for condition nodes.  It is modified using CAS
          * (or when possible, unconditional volatile writes).
+         *
+         *  普通的节点被初始化成0，条件节点被写成-2
          */
         volatile int waitStatus;
 
@@ -441,6 +455,9 @@ public abstract class AbstractQueuedSynchronizer
          * head only as a result of successful acquire. A
          * cancelled thread never succeeds in acquiring, and a thread only
          * cancels itself, not any other node.
+         */
+        /**
+         * 前驱节点，比如当前节点被取消，那就需要前驱节点和后继节点来完成连接。
          */
         volatile Node prev;
 
@@ -462,6 +479,8 @@ public abstract class AbstractQueuedSynchronizer
         /**
          * The thread that enqueued this node.  Initialized on
          * construction and nulled out after use.
+         *
+         * 进入该节点队列的线程。在构造方法里面初始化，使用后为空
          */
         volatile Thread thread;
 
@@ -474,11 +493,15 @@ public abstract class AbstractQueuedSynchronizer
          * re-acquire. And because conditions can only be exclusive,
          * we save a field by using special value to indicate shared
          * mode.
+         *
+         * 	存储condition队列中的后继节点。
+         *
          */
         Node nextWaiter;
 
         /**
          * Returns true if node is waiting in shared mode.
+         * 如果节点在共享模式中等待，则返回true
          */
         final boolean isShared() {
             return nextWaiter == SHARED;
