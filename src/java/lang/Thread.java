@@ -153,6 +153,9 @@ public class Thread implements Runnable {
     private boolean     single_step;
 
     /* Whether or not the thread is a daemon thread. */
+    /**
+     * 是否是守护线程
+     */
     private boolean     daemon = false;
 
     /* JVM state */
@@ -171,6 +174,7 @@ public class Thread implements Runnable {
     private AccessControlContext inheritedAccessControlContext;
 
     /* For autonumbering anonymous threads. */
+    /* 用来编号匿名线程. */
     private static int threadInitNumber;
     private static synchronized int nextThreadNum() {
         return threadInitNumber++;
@@ -954,7 +958,7 @@ public class Thread implements Runnable {
      * at the time of the interrupt will be reflected by this method
      * returning false.
      *
-     * 如果在中断被这个方法反应出来的时候，线程已经不存活了，忽略线程中断，
+     * 如果在中断被这个方法反应出来的时候。线程已经不存活了，忽略线程中断，
      * 这时返回false。
      *
      * @return  <code>true</code> if the current thread has been interrupted;
